@@ -13,7 +13,6 @@ const ArtCrimes: NextPage = ({ artcrimes }: any) => {
     return (
         <Layout title="Art Crimes">
             <div className={styles.container}>
-                <main className={styles.main}>
                     <h1>yo yo yo im gonna steal your art</h1>
                     <p>page {artcrimes.page}, {artcrimes.total} art crimes total</p>
                     <ol>
@@ -29,7 +28,6 @@ const ArtCrimes: NextPage = ({ artcrimes }: any) => {
                         <button>prev</button>
                         <button>next</button>
                     </div>
-                </main>
             </div>
         </Layout>
     )

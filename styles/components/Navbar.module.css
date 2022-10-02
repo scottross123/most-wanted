@@ -1,5 +1,23 @@
 .nav {
+    background-color: darkred;
     height: 48px;
-    border-bottom: 4px solid darkred;
+}
+
+.logo {
+    float: left;
+    padding: .5em;
+    margin: 0;
+}
+
+.links {
+    margin: 0;
+    padding: .5em;
+    list-style: none;
+    float: right;
+}
+
+.links li {
+    display: inline-block;
+    margin-left: 1em;
 }
 
