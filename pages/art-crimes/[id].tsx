@@ -1,20 +1,16 @@
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import Head from "next/head";
-import {Navbar} from "../../components/Navbar";
+import Layout from "../../components/Layout";
 
-const ArtCrimeDetails: NextPage = ({artcrime}: any) => {
-    console.log("https://artcrimes" + artcrime.images[0].original.substring(11))
+const ArtCrimeDetails: NextPage = ({ artcrime }: any) => {
+
     return (
-        <>
-            <Head>
-                <title>Art Crimes</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <Navbar />
-            <h1>{artcrime.title}</h1>
-            <p>{artcrime.description}</p>
-            <img src={"https://artcrimes" + artcrime.images[0].original.substring(11)} alt="image of art work" />
-        </>
+        <Layout title={artcrime.title}>
+            <div>
+                <h1>{artcrime.title}</h1>
+                <p>{artcrime.description}</p>
+                <img src={"https://artcrimes" + artcrime.images[0].original.substring(11)} alt="image of art work" />
+            </div>
+        </Layout>
     )
 }
 

@@ -1,21 +1,17 @@
 // noinspection SpellCheckingInspection
 
-import styles from '../../styles/Home.module.css'
-import {Navbar} from "../../components/Navbar";
+import styles from '../../styles/pages/Home.module.css'
+import Navbar from "../../components/Navbar";
 import Head from "next/head";
 import {GetStaticProps, NextPage} from "next";
 import Link from "next/link";
 import {useState} from "react";
+import Layout from '../../components/Layout';
 
 const ArtCrimes: NextPage = ({ artcrimes }: any) => {
 
     return (
-        <>
-            <Head>
-                <title>Art Crimes</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <Navbar />
+        <Layout title="Art Crimes">
             <div className={styles.container}>
                 <main className={styles.main}>
                     <h1>yo yo yo im gonna steal your art</h1>
@@ -35,7 +31,7 @@ const ArtCrimes: NextPage = ({ artcrimes }: any) => {
                     </div>
                 </main>
             </div>
-        </>
+        </Layout>
     )
 }
 
