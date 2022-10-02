@@ -3,8 +3,12 @@
 import styles from '../../styles/Home.module.css'
 import {Navbar} from "../../components/Navbar";
 import Head from "next/head";
+import {GetStaticProps, NextPage} from "next";
+import Link from "next/link";
+import {useState} from "react";
 
-const ArtCrimes = ({ artcrimes }: any) => {
+const ArtCrimes: NextPage = ({ artcrimes }: any) => {
+
     return (
         <>
             <Head>
@@ -19,18 +23,24 @@ const ArtCrimes = ({ artcrimes }: any) => {
                     <ol>
                         {
                             artcrimes.items.map((artcrime: any) =>
-                                <li key={artcrime.id}>{artcrime.title}</li>
+                                <Link key={artcrime.uid} href={`/art-crimes/${artcrime.uid}`}>
+                                    <li><a>{artcrime.title}</a></li>
+                                </Link>
                             )
                         }
                     </ol>
+                    <div>
+                        <button>prev</button>
+                        <button>next</button>
+                    </div>
                 </main>
             </div>
         </>
     )
 }
 
-export const getStaticProps = async () => {
-    const res = await fetch('https://api.fbi.gov/@artcrimes?pageSize=50&page=3')
+export const getStaticProps: GetStaticProps = async () => {
+    const res = await fetch('https://api.fbi.gov/@artcrimes?pageSize=50&page=1')
     const data = await res.json()
 
     return { props: { artcrimes: data } }
