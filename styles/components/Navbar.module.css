@@ -5,8 +5,18 @@
 
 .logo {
     float: left;
-    padding: .5em;
-    margin: 0;
+    height:48px;
+}
+
+.logo img {
+    max-width: 40px;
+    float: left;
+    margin: 4px 10px 4px 4px;
+}
+
+.logo h1 {
+    margin: 10px 0 0 0;
+    display: inline-block;
 }
 
 .links {
