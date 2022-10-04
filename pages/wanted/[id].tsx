@@ -1,10 +1,10 @@
 import Layout from "../../components/Layout";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import getArtcrimeById from "../../api/getArtcrimeById";
-import getArtcrimes from "../../api/getArtcrimes";
+import getArtcrimeById from "../../lib/getArtcrimeById";
+import getArtcrimes from "../../lib/getArtcrimes";
 import {Artcrime, WantedPerson} from "../../types";
-import getWantedPerson from "../../api/getWantedPerson";
-import getWanted from "../../api/getWanted";
+import getWantedPerson from "../../lib/getWantedPerson";
+import getWanted from "../../lib/getWanted";
 
 type WantedPersonProps = {
     wantedPerson: WantedPerson;

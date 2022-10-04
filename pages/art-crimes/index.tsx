@@ -1,11 +1,13 @@
 // noinspection SpellCheckingInspection
 
 import styles from '../../styles/pages/Home.module.css'
-import {GetStaticProps, NextPage} from "next";
+import {GetServerSideProps, GetStaticProps, NextPage} from "next";
 import Link from "next/link";
 import Layout from '../../components/Layout';
 import {Artcrime, Artcrimes} from "../../types";
-import getArtcrimes from "../../api/getArtcrimes";
+import getArtcrimes from "../../lib/getArtcrimes";
+import {useRouter} from "next/router";
+import {useState} from "react";
 
 type ArtcrimePreview = Pick<Artcrime, "uid" | "title">
 
@@ -13,7 +15,9 @@ type ArtCrimesProps = {
     artcrimes: Artcrimes;
 }
 
-const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items } }: ArtCrimesProps) => {
+const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items } }) => {
+    const router = useRouter();
+    const [pageNum, setPageNum] = useState<number>(1);
 
     return (
         <Layout title="Art Crimes">
@@ -33,15 +37,16 @@ const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items }
                     </ol>
                     <div>
                         <button>prev</button>
-                        <button>next</button>
+                        <button onClick={() => router.push({query: "page=2"})}>next</button>
                     </div>
             </div>
         </Layout>
     )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-    const data = await getArtcrimes();
+export const getServerSideProps: GetServerSideProps = async ({ query }: any) => {
+    console.log(query);
+    const data = await getArtcrimes(query);
     return { props: { artcrimes: data } }
 }
 

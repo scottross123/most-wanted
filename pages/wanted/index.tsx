@@ -2,7 +2,7 @@ import {GetStaticProps, NextPage} from "next";
 import Layout from "../../components/Layout";
 import styles from "../../styles/pages/Home.module.css";
 import Link from "next/link";
-import getWanted from "../../api/getWanted";
+import getWanted from "../../lib/getWanted";
 import {Wanted, WantedPerson} from "../../types";
 
 type MostWantedProps = {

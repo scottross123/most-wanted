@@ -2,9 +2,9 @@ import {GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage} from "n
 import Layout from "../../components/Layout";
 import styles from "../../styles/pages/ArtCrimeDetails.module.css"
 import {Artcrime} from "../../types";
-import getArtcrimeById from "../../api/getArtcrimeById";
+import getArtcrimeById from "../../lib/getArtcrimeById";
 import {ParsedUrlQuery} from "querystring";
-import getArtcrimes from "../../api/getArtcrimes";
+import getArtcrimes from "../../lib/getArtcrimes";
 
 type ArtCrimeDetailsProps = {
     artcrime: Artcrime;
@@ -17,7 +17,7 @@ interface ArtCrimeDetailsParams extends ParsedUrlQuery {
 const ArtCrimeDetails: NextPage<ArtCrimeDetailsProps> = (props: ArtCrimeDetailsProps) => {
     const { artcrime: { title, description, images } } = props;
     const imageUrl = `https://artcrimes${images[0].original.substring(11)}`;
-    // image url from api call is broken and fixed here, should be 'artcrimes' not 'api'
+    // image url from lib call is broken and fixed here, should be 'artcrimes' not 'lib'
 
     return (
         <Layout title={title}>
