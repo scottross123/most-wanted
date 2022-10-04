@@ -7,7 +7,6 @@ import Layout from '../../components/Layout';
 import {Artcrime, Artcrimes} from "../../types";
 import getArtcrimes from "../../lib/getArtcrimes";
 import {useRouter} from "next/router";
-import {useState} from "react";
 
 type ArtcrimePreview = Pick<Artcrime, "uid" | "title">
 
@@ -17,7 +16,15 @@ type ArtCrimesProps = {
 
 const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items } }) => {
     const router = useRouter();
-    const [pageNum, setPageNum] = useState<number>(1);
+    const isPrevDisabled = (router.query.page === undefined || router.query.page === "1");
+
+    const incrementPageNumber = (increment: number) => {
+        const { page } = router.query;
+        if (page === undefined) return router.push({ query: "page=2"});
+        const newPageNumber = parseInt(page as string) + increment;
+        if (newPageNumber < 2) return router.push({ query: "" });
+        return router.push({ query: `page=${newPageNumber}` });
+    }
 
     return (
         <Layout title="Art Crimes">
@@ -35,9 +42,9 @@ const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items }
                             )
                         }
                     </ol>
-                    <div>
-                        <button>prev</button>
-                        <button onClick={() => router.push({query: "page=2"})}>next</button>
+                    <div className="">
+                        <button onClick={() => incrementPageNumber(-1)} disabled={isPrevDisabled}>prev</button>
+                        <button onClick={() => incrementPageNumber(1)}>next</button>
                     </div>
             </div>
         </Layout>
@@ -45,7 +52,6 @@ const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items }
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }: any) => {
-    console.log(query);
     const data = await getArtcrimes(query);
     return { props: { artcrimes: data } }
 }
