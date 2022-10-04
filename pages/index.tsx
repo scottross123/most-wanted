@@ -4,7 +4,7 @@ import styles from '../styles/pages/Home.module.css'
 
 const Home: NextPage = () => {
   return (
-      <Layout title="Next App">
+      <Layout title="Home">
         <div className={styles.container}>
           bruh
         </div>

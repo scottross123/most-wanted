@@ -13,14 +13,16 @@ const ArtCrimes: NextPage = ({ artcrimes }: any) => {
     return (
         <Layout title="Art Crimes">
             <div className={styles.container}>
-                    <h1>yo yo yo im gonna steal your art</h1>
+                    <h1>art crimes 🖼️</h1>
                     <p>page {artcrimes.page}, {artcrimes.total} art crimes total</p>
                     <ol>
                         {
                             artcrimes.items.map((artcrime: any) =>
-                                <Link key={artcrime.uid} href={`/art-crimes/${artcrime.uid}`}>
-                                    <li><a>{artcrime.title}</a></li>
-                                </Link>
+                                <li key={artcrime.uid}>
+                                    <Link href={`/art-crimes/${artcrime.uid}`}>
+                                        {artcrime.title}
+                                    </Link>
+                                </li>
                             )
                         }
                     </ol>

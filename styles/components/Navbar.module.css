@@ -10,14 +10,23 @@
 }
 
 .links {
-    margin: 0;
-    padding: .5em;
+    margin: 0 1em;
     list-style: none;
     float: right;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    padding: 0;
 }
 
 .links li {
-    display: inline-block;
-    margin-left: 1em;
+    display: table;
+    text-align: center;
 }
 
+.links li a {
+    vertical-align: middle;
+    display: table-cell;
+}

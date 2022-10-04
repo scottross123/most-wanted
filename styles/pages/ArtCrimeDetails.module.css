@@ -1,0 +1,23 @@
+.detailsContainer {
+    width: 50%;
+    margin: auto;
+}
+
+.title, .description {
+    text-align: center;
+}
+
+.figure {
+    display: flex;
+    flex-flow: column;
+    padding: 5px;
+    max-width: 256px;
+    margin: auto;
+}
+
+.figure figcaption {
+    font-style: italic;
+    padding: 8px;
+    text-align: center;
+}
+

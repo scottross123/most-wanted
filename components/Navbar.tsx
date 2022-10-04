@@ -8,9 +8,9 @@ const Navbar = () => {
                 <Link href="/">FBI&apos;s Most Wanted</Link>
             </h1>
             <ul className={styles.links}>
-                <li><Link href="/art-crimes">Art Crimes</Link></li>
-                <li>Most Wanted</li>
-                <li>GitHub Repo</li>
+                <li className={styles.first}><Link href="/art-crimes">Art Crimes</Link></li>
+                <li><a>Most Wanted</a></li>
+                <li><a href="https://github.com/scottross123/most-wanted">GitHub Repo</a></li>
             </ul>
         </nav>
     );
