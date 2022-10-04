@@ -8,8 +8,9 @@ type getArtcrimesParameters = {
     title?: string,
 }
 
-const getArtcrimes = async (pageSize: number, pageNumber: number): Promise<Artcrimes> => {
-    const res = await fetch(`https://api.fbi.gov/@artcrimes?pageSize=${pageSize}&page=${pageNumber}`);
+const getArtcrimes = async (args?: getArtcrimesParameters): Promise<Artcrimes> => {
+    const params = new URLSearchParams(args as Record<string, string>);
+    const res = await fetch(`https://api.fbi.gov/@artcrimes?${params.toString()}`);
     const data = await res.json();
 
     return data;

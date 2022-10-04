@@ -13,7 +13,7 @@ type getWantedParameters = {
 
 const getWanted = async (args?: getWantedParameters): Promise<Wanted> => {
     const params = new URLSearchParams(args as Record<string, string>);
-    const res = await fetch(`https://api.fbi.gov/@wanted?${params.toString()}`)
+    const res = await fetch(`https://api.fbi.gov/@wanted?${params.toString()}`);
     return await res.json();
 }
 

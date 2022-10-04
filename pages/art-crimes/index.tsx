@@ -1,26 +1,31 @@
 // noinspection SpellCheckingInspection
 
 import styles from '../../styles/pages/Home.module.css'
-import Navbar from "../../components/Navbar";
-import Head from "next/head";
 import {GetStaticProps, NextPage} from "next";
 import Link from "next/link";
-import {useState} from "react";
 import Layout from '../../components/Layout';
+import {Artcrime, Artcrimes} from "../../types";
+import getArtcrimes from "../../api/getArtcrimes";
 
-const ArtCrimes: NextPage = ({ artcrimes }: any) => {
+type ArtcrimePreview = Pick<Artcrime, "uid" | "title">
+
+type ArtCrimesProps = {
+    artcrimes: Artcrimes;
+}
+
+const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items } }: ArtCrimesProps) => {
 
     return (
         <Layout title="Art Crimes">
             <div className={styles.container}>
                     <h1>art crimes 🖼️</h1>
-                    <p>page {artcrimes.page}, {artcrimes.total} art crimes total</p>
+                    <p>page {page}, {total} art crimes total</p>
                     <ol>
                         {
-                            artcrimes.items.map((artcrime: any) =>
-                                <li key={artcrime.uid}>
-                                    <Link href={`/art-crimes/${artcrime.uid}`}>
-                                        {artcrime.title}
+                            items.map(({ uid, title }: ArtcrimePreview) =>
+                                <li key={uid}>
+                                    <Link href={`/art-crimes/${uid}`}>
+                                        {title}
                                     </Link>
                                 </li>
                             )
@@ -36,9 +41,7 @@ const ArtCrimes: NextPage = ({ artcrimes }: any) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const res = await fetch('https://api.fbi.gov/@artcrimes?pageSize=50&page=1')
-    const data = await res.json()
-
+    const data = await getArtcrimes();
     return { props: { artcrimes: data } }
 }
 

@@ -64,7 +64,9 @@ export type WantedPerson = {
     ],
     modified: string,
     publication: string,
-    path: string
+    path: string,
+    url: string,
+    languages: string
 }
 
 export type Wanted = {

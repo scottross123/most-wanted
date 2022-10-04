@@ -6,7 +6,9 @@ export type Artcrime = {
     images: [
         {
             original: string,
-            thumb: string
+            large: string,
+            caption: string,
+            thumb: string,
         }
     ],
     crimeCategory: string,
