@@ -1,3 +1,8 @@
+:root {
+  --clr-primary: hsl(0, 91%, 62%);
+  --clr-background: hsl(0, 0%, 14%);
+}
+
 html,
 body {
   padding: 0;
@@ -29,6 +34,6 @@ a {
   }
   body {
     color: white;
-    background: black;
+    background: var(--clr-background);
   }
 }
