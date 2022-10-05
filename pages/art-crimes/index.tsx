@@ -1,12 +1,10 @@
-// noinspection SpellCheckingInspection
-
-import styles from '../../styles/pages/Home.module.css'
-import {GetServerSideProps, GetStaticProps, NextPage} from "next";
+import {GetServerSideProps, NextPage} from "next";
 import Link from "next/link";
 import Layout from '../../components/Layout';
 import {Artcrime, Artcrimes} from "../../types";
 import getArtcrimes from "../../lib/getArtcrimes";
 import {useRouter} from "next/router";
+import PaginationPage from "../../components/PaginationPage";
 
 type ArtcrimePreview = Pick<Artcrime, "uid" | "title">
 
@@ -17,6 +15,7 @@ type ArtCrimesProps = {
 const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items } }) => {
     const router = useRouter();
     const isPrevDisabled = (router.query.page === undefined || router.query.page === "1");
+    const title = "Art Crimes 🖼️";
 
     const incrementPageNumber = (increment: number) => {
         const { page } = router.query;
@@ -28,24 +27,19 @@ const ArtCrimes: NextPage<ArtCrimesProps> = ({ artcrimes: { page, total, items }
 
     return (
         <Layout title="Art Crimes">
-            <div className={styles.container}>
-                    <h1>art crimes 🖼️</h1>
-                    <p>page {page}, {total} art crimes total</p>
-                    <ol>
-                        {
-                            items.map(({ uid, title }: ArtcrimePreview) =>
-                                <li key={uid}>
-                                    <Link href={`/art-crimes/${uid}`}>
-                                        {title}
-                                    </Link>
-                                </li>
-                            )
-                        }
-                    </ol>
-                    <div className="">
-                        <button onClick={() => incrementPageNumber(-1)} disabled={isPrevDisabled}>prev</button>
-                        <button onClick={() => incrementPageNumber(1)}>next</button>
-                    </div>
+            <div>
+                <div className="flex justify-between">
+                    <button onClick={() => incrementPageNumber(-1)} disabled={isPrevDisabled}>prev</button>
+                    <button onClick={() => incrementPageNumber(1)}>next</button>
+                </div>
+                <PaginationPage
+                    title={title}
+                    page={page}
+                    pageSize={20}
+                    total={total}
+                    items={items}
+                    url='art-crimes'
+                />
             </div>
         </Layout>
     )

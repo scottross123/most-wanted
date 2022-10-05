@@ -4,6 +4,7 @@ import styles from "../../styles/pages/Home.module.css";
 import Link from "next/link";
 import getWanted from "../../lib/getWanted";
 import {Wanted, WantedPerson} from "../../types";
+import PaginationPage from "../../components/PaginationPage";
 
 type MostWantedProps = {
     wanted: Wanted;
@@ -11,28 +12,18 @@ type MostWantedProps = {
 
 const MostWanted: NextPage<MostWantedProps> = (props: MostWantedProps) => {
     const { wanted: { page, total, items } } = props;
+    const title = "Wanted 🦹";
 
     return (
-        <Layout title="Wanted">
-            <div className={styles.container}>
-                <h1>wanted 🦹</h1>
-                <p>page {page}, {total} wanted total</p>
-                <ol>
-                    {
-                        items.map(({ uid, title }: WantedPerson) =>
-                            <li key={uid}>
-                                <Link href={`/wanted/${uid}`}>
-                                    {title}
-                                </Link>
-                            </li>
-                        )
-                    }
-                </ol>
-                <div>
-                    <button>prev</button>
-                    <button>next</button>
-                </div>
-            </div>
+        <Layout title={title}>
+            <PaginationPage
+                title={title}
+                page={page}
+                pageSize={20}
+                total={total}
+                items={items}
+                url='wanted'
+            />
         </Layout>
     );
 }
