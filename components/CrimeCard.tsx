@@ -5,21 +5,21 @@ import {Card} from "react-daisyui";
 type CrimeCardProps = {
     uid: string,
     title: string,
-    description: string,
     thumb: string,
     url: 'art-crimes' | 'wanted',
 }
 
 const CrimeCard = (props: CrimeCardProps) => {
-    const { uid, title, description, thumb, url } = props;
+    const { uid, title, thumb, url } = props;
     // TODO add shadows to card
     return (
+        <Link href={`/${url}/${uid}`}>
         <Card
-            className="bg-primary p-8 rounded-none"
+            className="cursor-pointer border-b-base-200 border-b-4 p-4 transition transform hover:boxy-shadow "
             compact
         >
             <Card.Image
-                className="m-auto max-h-36 m-w-28"
+                className="m-auto h-32 w-28"
                 onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src=`${fbi.src}`;
@@ -28,12 +28,13 @@ const CrimeCard = (props: CrimeCardProps) => {
                 alt="crime image"
             />
             <Card.Body className="text-center">
-            <Card.Title tag={"h4"}>
-                <Link href={`/${url}/${uid}`}>{title}</Link>
+            <Card.Title className="line-clamp-2 text-sm" tag={"h4"}>
+                {title}
             </Card.Title>
                 {/*<p className="">{description}</p> */}
             </Card.Body>
         </Card>
+        </Link>
     );
 }
 
