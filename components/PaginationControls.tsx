@@ -13,7 +13,8 @@ const PaginationButton = (props: PaginationButtonProps) => {
     const router = useRouter();
 
     const handleClick = () => {
-        const pageQuery = router.query.page; // TODO this is probably going to break when i let the user chagne page size
+        // TODO this is probably going to break when i let the user chagne page size
+        const pageQuery = router.query.page;
         if (typeof pageNumber === "number") return router.push({ query: `page=${pageNumber}` });
         const increment = pageNumber === "»" ? 1 : -1;
         if (pageQuery === undefined) return router.push({ query: "page=2"});

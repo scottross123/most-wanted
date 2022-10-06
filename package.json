@@ -10,7 +10,6 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@react-buddy/ide-toolbox": "^2.2.1",
     "daisyui": "^2.31.0",
     "next": "12.3.1",
     "react": "18.2.0",

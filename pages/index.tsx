@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Layout from '../components/Layout';
 import {GetStaticProps} from "next";
-import {baseUrl} from "../utils/baseUrl";
+import {baseURL} from "../utils/baseUrl";
 
 const Home: NextPage = () => {
   return (

@@ -19,7 +19,7 @@ const MostWanted = (props: MostWantedProps) => {
             <PaginationPage
                 title={title}
                 page={page}
-                pageSize={20}
+                pageSize={20} // eventually this will be selected by user, magic number here is temporary
                 total={total}
                 items={items}
                 url='wanted'

@@ -11,6 +11,7 @@ const dots = '...';
 const getPages = (length: number, inc: number = 1) =>
     Array.from({ length }, (_, i) => i + inc)
 
+// TODO eventually the page numbers in pagination should scale with the user's selected page size
 const usePagination = (props: UsePaginationProps): PageNumber[] => {
     const { page, pageSize, total } = props;
     const totalPages = Math.ceil(total / pageSize);
