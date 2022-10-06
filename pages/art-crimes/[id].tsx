@@ -5,6 +5,8 @@ import getArtcrimeById from "../../lib/getArtcrimeById";
 import {ParsedUrlQuery} from "querystring";
 import getArtcrimes from "../../lib/getArtcrimes";
 import {useRouter} from "next/router";
+import CrimePage from "../../components/CrimePage";
+import getArtImages from "../../utils/getArtImages";
 
 type ArtCrimeDetailsProps = {
     artcrime: Artcrime;
@@ -15,25 +17,24 @@ interface ArtCrimeDetailsParams extends ParsedUrlQuery {
 }
 
 const ArtCrimeDetails: NextPage<ArtCrimeDetailsProps> = (props: ArtCrimeDetailsProps) => {
-    const { artcrime: { title, description, images } } = props;
-    const imageUrl = `https://artcrimes${images[0].original.substring(11)}`;
+    const { artcrime } = props;
+    const { title, description } = artcrime;
+    artcrime.images = getArtImages(artcrime.images);
     const router = useRouter();
     // image url from lib call is broken and fixed here, should be 'artcrimes' not 'lib'
 
-    if (router.isFallback) {
-        console.log('falling back')
-        return <p>fallback</p>}
-
     return (
         <Layout title={title}>
-            <div >
+            {/*<div >
                 <h1 >{title}</h1>
                 <p >{description}</p>
                 <figure >
                     <img src={imageUrl} alt="image of art work" />
                     <figcaption>{images[0].caption}</figcaption>
                 </figure>
-            </div>
+            </div> */}
+
+            <CrimePage {...artcrime} />
         </Layout>
     );
 }

@@ -29,7 +29,6 @@ const PaginationButton = (props: PaginationButtonProps) => {
             onClick={pageNumber !== "..." && pageNumber != page ? handleClick : undefined}
             active={pageNumber === page}
             disabled={(pageNumber === "«" && page === 1) || (pageNumber === "»" && page === totalPages)}
-            variant="outline"
             size="sm"
         >
                 {pageNumber}

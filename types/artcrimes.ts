@@ -1,16 +1,11 @@
+import {CrimeImage} from "./crimeImage";
+
 export type Artcrime = {
     id: string,
     uid: string,
     title: string,
     description: string,
-    images: [
-        {
-            original: string,
-            large: string,
-            caption: string,
-            thumb: string,
-        }
-    ],
+    images: CrimeImage[]
     crimeCategory: string,
     maker: string,
     materials: string,

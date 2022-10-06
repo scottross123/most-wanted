@@ -1,16 +1,11 @@
+import {CrimeImage} from "./crimeImage";
+
 export type WantedPerson = {
     id: string,
     uid: string,
     title: string,
     description: string,
-    images: [
-        {
-            caption: string,
-            original: string,
-            large: string,
-            thumb: string
-        }
-    ],
+    images: CrimeImage[],
     files: [
         {
             url: string,
