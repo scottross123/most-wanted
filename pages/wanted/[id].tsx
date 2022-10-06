@@ -1,7 +1,5 @@
 import Layout from "../../components/Layout";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import getArtcrimeById from "../../lib/getArtcrimeById";
-import getArtcrimes from "../../lib/getArtcrimes";
 import {Artcrime, WantedPerson} from "../../types";
 import getWantedPerson from "../../lib/getWantedPerson";
 import getWanted from "../../lib/getWanted";

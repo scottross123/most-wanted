@@ -1,4 +1,4 @@
-import {GetStaticProps, NextPage} from "next";
+import {GetServerSideProps, GetStaticProps, NextPage} from "next";
 import Layout from "../../components/Layout";
 import styles from "../../styles/pages/Home.module.css";
 import Link from "next/link";
@@ -10,7 +10,7 @@ type MostWantedProps = {
     wanted: Wanted;
 }
 
-const MostWanted: NextPage<MostWantedProps> = (props: MostWantedProps) => {
+const MostWanted = (props: MostWantedProps) => {
     const { wanted: { page, total, items } } = props;
     const title = "Wanted 🦹";
 
@@ -28,8 +28,9 @@ const MostWanted: NextPage<MostWantedProps> = (props: MostWantedProps) => {
     );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-    const data = await getWanted();
+// TODO fix this GoofyScript if TypeScript stops being annoying
+export const getServerSideProps: GetServerSideProps = async ({ query }: any) => {
+    const data = await getWanted(query);
     return { props: { wanted: data } };
 }
 

@@ -1,6 +1,5 @@
 import {GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage} from "next";
 import Layout from "../../components/Layout";
-import styles from "../../styles/pages/ArtCrimeDetails.module.css"
 import {Artcrime} from "../../types";
 import getArtcrimeById from "../../lib/getArtcrimeById";
 import {ParsedUrlQuery} from "querystring";
@@ -21,10 +20,10 @@ const ArtCrimeDetails: NextPage<ArtCrimeDetailsProps> = (props: ArtCrimeDetailsP
 
     return (
         <Layout title={title}>
-            <div className={styles.detailsContainer}>
-                <h1 className={styles.title}>{title}</h1>
-                <p className={styles.description}>{description}</p>
-                <figure className={styles.figure}>
+            <div >
+                <h1 >{title}</h1>
+                <p >{description}</p>
+                <figure >
                     <img src={imageUrl} alt="image of art work" />
                     <figcaption>{images[0].caption}</figcaption>
                 </figure>

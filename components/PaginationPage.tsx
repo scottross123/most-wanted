@@ -1,7 +1,6 @@
-import {FC} from "react";
 import {Artcrime, WantedPerson} from "../types";
-import CrimeCard from "./CrimeCard";
 import fbi from "../assets/images/fbi.webp";
+import {PaginationControls, CrimeCard} from "./index";
 
 type PaginationPageProps = {
     title: string,
@@ -12,7 +11,7 @@ type PaginationPageProps = {
     url: 'art-crimes' | 'wanted',
 }
 
-const PaginationPage: FC<PaginationPageProps> = (props: PaginationPageProps) => {
+const PaginationPage = (props: PaginationPageProps) => {
     const {
         title,
         page,
@@ -23,9 +22,14 @@ const PaginationPage: FC<PaginationPageProps> = (props: PaginationPageProps) => 
     } = props;
 
     return (
-        <div className="d">
-            <h1 className="text-6xl text-center mb-12">{title}</h1>
-            <p className="text-center mb-12">Page {page}, {pageSize} results per page, and {total} results total.</p>
+        <div className="">
+            <h1 className="text-6xl text-center mb-6">{title}</h1>
+            <p className="text-center mb-6">Page {page}, {pageSize} results per page, and {total} results total.</p>
+            <PaginationControls
+                page={page}
+                pageSize={pageSize}
+                total={total}
+            />
             <div className="grid grid-cols-5 gap-8">
                 {
                     items.map((item: WantedPerson | Artcrime) => {

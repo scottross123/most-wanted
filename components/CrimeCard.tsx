@@ -1,6 +1,6 @@
 import fbi from "../assets/images/fbi.webp";
 import Link from "next/link";
-import {Card} from "react-daisyui";
+import { Card } from "react-daisyui";
 
 type CrimeCardProps = {
     uid: string,
