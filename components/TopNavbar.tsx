@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const TopNavbar = () => {
     return (
-        <Navbar className="bg-base-100 border-b-4 border-b-base-200 sticky top-0 z-50">
+        <Navbar className="bg-base-100 border-b-2 border-b-base-200 sticky top-0 z-50 h-16">
             <Navbar.Start>
                 <Image
                     width={50}

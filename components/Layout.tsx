@@ -7,6 +7,8 @@ type LayoutProps = {
     children: JSX.Element,
 }
 
+// TODO fix unnecassry scrollbar
+
 const Layout = ({ title, children }: LayoutProps) => {
     return (
         <>

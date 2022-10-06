@@ -7,6 +7,7 @@ import fbi from '../assets/images/fbi.webp';
 import { CrimeImage } from '../types';
 
 const getArtImages = (images: CrimeImage[] | undefined): CrimeImage[] => {
+    console.log(images![0].original)
     if (images === undefined)
         return [
             {
@@ -19,6 +20,7 @@ const getArtImages = (images: CrimeImage[] | undefined): CrimeImage[] => {
 
     return images.map((image: CrimeImage) => {
         const { original, large, caption, thumb } = image;
+        console.log(original)
         return {
             original: `https://artcrimes${original.substring(11)}`,
             large: `https://artcrimes${large.substring(11)}`,
