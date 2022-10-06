@@ -4,19 +4,25 @@ import {Artcrime} from "../../types";
 import getArtcrimeById from "../../lib/getArtcrimeById";
 import {ParsedUrlQuery} from "querystring";
 import getArtcrimes from "../../lib/getArtcrimes";
+import {useRouter} from "next/router";
 
 type ArtCrimeDetailsProps = {
     artcrime: Artcrime;
 }
 
 interface ArtCrimeDetailsParams extends ParsedUrlQuery {
-    id: string;
+    id: string,
 }
 
 const ArtCrimeDetails: NextPage<ArtCrimeDetailsProps> = (props: ArtCrimeDetailsProps) => {
     const { artcrime: { title, description, images } } = props;
     const imageUrl = `https://artcrimes${images[0].original.substring(11)}`;
+    const router = useRouter();
     // image url from lib call is broken and fixed here, should be 'artcrimes' not 'lib'
+
+    if (router.isFallback) {
+        console.log('falling back')
+        return <p>fallback</p>}
 
     return (
         <Layout title={title}>
@@ -40,11 +46,22 @@ export const getStaticProps: GetStaticProps = async ({ params } ) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+    /*const total = await getTotalArtcrimes();
+    const PAGE_SIZE = 60;
+    type Path = { params: { id: string } }
+    const paths: Path[] = [];
+    for (let i = 0; i < Math.ceil(total / PAGE_SIZE); i = i + 1) {
+        const { items } = await getArtcrimes({ page: i, pageSize: PAGE_SIZE });
+        const subPaths = items.map(({uid}: Artcrime) => {
+            return {params: {id: uid}}
+        });
+        paths.push(...subPaths);
+    } */
     const { items } = await getArtcrimes();
-    const paths = items.map(({ uid }: Artcrime) => {
-        return { params: { id: uid } }
+    const paths = items.map(({uid}: Artcrime) => {
+        return {params: {id: uid}}
     });
-    return { paths, fallback: false };
+    return { paths, fallback: true }; // tbh im not really sure why changing fallback: false to fallback: true fixes this but it does
 }
 
 export default ArtCrimeDetails;

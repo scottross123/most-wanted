@@ -1,7 +1,7 @@
-import { Artcrimes } from "../types";
+import {Artcrimes} from "../types";
 
 type getArtcrimesParameters = {
-    pageSize?: number,
+    pageSize?: number, // max page size is 60
     page?: number,
     sortOn?: 'publication' | 'modified',
     sortOrder?: 'desc' | 'asc',
@@ -11,8 +11,6 @@ type getArtcrimesParameters = {
 const getArtcrimes = async (args?: getArtcrimesParameters): Promise<Artcrimes> => {
     const params = new URLSearchParams(args as Record<string, string>);
     const res = await fetch(`https://api.fbi.gov/@artcrimes?${params.toString()}`);
-    const data = await res.json();
-
-    return data;
+    return await res.json();
 }
 export default getArtcrimes;

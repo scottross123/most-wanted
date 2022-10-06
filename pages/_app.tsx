@@ -1,6 +1,5 @@
 import '../styles/globals.css';
 import type {AppProps} from 'next/app';
-import {ComponentPreviews, useInitial} from "../dev";
 import {useTheme} from "react-daisyui";
 
 function MyApp({Component, pageProps}: AppProps) {

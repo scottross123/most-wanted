@@ -42,6 +42,7 @@ const PaginationPage = (props: PaginationPageProps) => {
                                 title={title}
                                 thumb={thumb}
                                 url={url}
+                                page={page}
                             />
                         );
                     })

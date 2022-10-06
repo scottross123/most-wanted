@@ -12,7 +12,7 @@ type WantedPersonDetailsParams = {
     id: string;
 }
 
-const WantedPersonDetails: NextPage<WantedPersonProps> = (props : WantedPersonProps) => {
+const WantedPersonDetails= (props : WantedPersonProps) => {
     const { wantedPerson: { title, url, description, details, images } } = props;
     const detailsHTML = { __html: details };
     return (
@@ -35,10 +35,11 @@ export const getStaticProps: GetStaticProps = async ({ params } ) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const { items } = await getWanted();
-    const paths = items.map(({ uid }: WantedPerson) => {
+    const paths = items.map((item: WantedPerson) => {
+        const { uid } = item;
         return { params: { id: uid } }
     });
-    return { paths, fallback: false };
+    return { paths, fallback: true };
 }
 
 export default WantedPersonDetails;
