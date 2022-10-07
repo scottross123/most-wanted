@@ -6,12 +6,11 @@ export type WantedPerson = {
     title: string,
     description: string,
     images: CrimeImage[],
-    files: [
+    files:
         {
             url: string,
             name: string
-        }
-    ],
+        }[],
     warning_message: string,
     remarks: string,
     details: string,
@@ -20,19 +19,11 @@ export type WantedPerson = {
     reward_text: string,
     reward_min: number,
     reward_max: number,
-    dates_of_birth_used: [
-        string
-    ],
+    dates_of_birth_used: string[]
     place_of_birth: string,
-    locations: [
-        string
-    ],
-    field_offices: [
-        string
-    ],
-    legat_names: [
-        string
-    ],
+    locations: string[]
+    field_offices: string[]
+    legat_names: [],
     status: string,
     person_classification: string,
     ncic: string,
@@ -47,16 +38,16 @@ export type WantedPerson = {
     build: string,
     sex: string,
     race: string,
+    eyes_raw: string,
+    hair_raw: string,
+    race_raw: string,
+    aliases: string[],
     nationality: string,
     scars_and_marks: string,
     complexion: string,
     occupations: string,
-    possible_countries: [
-        string
-    ],
-    possible_states: [
-        string
-    ],
+    possible_countries: string[],
+    possible_states: string[],
     modified: string,
     publication: string,
     path: string,

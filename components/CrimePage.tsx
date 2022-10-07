@@ -1,8 +1,9 @@
 import {Artcrime, CrimeImage, WantedPerson} from "../types";
-import {Button, Card, Table} from "react-daisyui";
+import {Button, Card, Carousel, Table} from "react-daisyui";
 import { Link } from "react-daisyui";
 import getArtImages from "../utils/getArtImages";
 import {useRouter} from "next/router";
+import {ReactElement} from "react";
 
 // TODO maybe write a more explicit type definition for this
 interface CrimePageProps extends Partial<Artcrime>, Partial<WantedPerson> {
@@ -16,7 +17,9 @@ const CrimePage = (props: CrimePageProps) => {
         crimeCategory,
         description,
         additionalData,
+        details,
         materials,
+        remarks,
         maker,
         period,
         measurements,
@@ -24,7 +27,32 @@ const CrimePage = (props: CrimePageProps) => {
         modified,
         images,
         publication,
+        warning_message,
+        additional_information,
+        caution,
         crimeType,
+        age_max,
+        age_min,
+        height_max,
+        height_min,
+        weight_max,
+        weight_min,
+        aliases,
+        legat_names,
+        person_classification,
+        ncic,
+        eyes_raw,
+        hair_raw,
+        sex,
+        race_raw,
+        nationality,
+        build,
+        scars_and_marks,
+        complexion,
+        occupations,
+        possible_countries,
+        possible_states,
+        status
     } = props;
 
     const fixedImages = crimeType === 'artcrime' ? getArtImages(images) : images;
@@ -36,24 +64,79 @@ const CrimePage = (props: CrimePageProps) => {
         "Maker": maker,
         "Period": period,
         "Measurements": measurements,
+
+        "Aliases": aliases?.join(", "),
+        "Legal Names": legat_names?.join(", "),
+        "Status": status,
+        "Classification": person_classification,
+        "NCIC": ncic,
+        "Age": `${age_min} - ${age_max}`,
+        "Weight": `${weight_min} lb - ${weight_max} lb`,
+        "Height": `${height_min} in - ${height_max} in`, // TODO add getRange function
+        "Eyes": eyes_raw,
+        "Hair": hair_raw,
+        "Build": build,
+        "Sex": sex,
+        "Race": race_raw,
+        "Nationality": nationality,
+        "Scars and Marks": scars_and_marks,
+        "Complexion": complexion,
+        "Occupations": occupations,
+        "Possible Countries": possible_countries?.join(", "),
+        "Possible States": possible_states?.join(", "),
+
         "Last Modified": modified, // TODO transform into readable date, maybe using that javascript library?
         "Publication": publication,
+
+
     };
+
+    const cardParagraphs = [
+        `<p class="text-warning font-extrabold">${warning_message}</p>`,
+        description,
+        additionalData,
+        additional_information,
+        details,
+        caution,
+        remarks
+    ]
+
+    const carouselButtonStyle = (value: string) => {
+        return <Button size="xs" color="ghost">{value}</Button>
+    }
 
     return (
         <div className="flex w-full gap-16 justify-center">
             <Card className="flex-1 p-8">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <Card.Image
-                    className="m-auto"
-                    src={fixedImages[0].original}
-                    alt="picture of artwork"
-                />
-                <figcaption className="text-sm italic text-center">{fixedImages[0].caption}</figcaption>
+                <figure className="flex flex-col gap-4">
+                    <Carousel
+                        className="rounded-box"
+                        display="numbered"
+                        buttonStyle={carouselButtonStyle}
+                    >
+                        {
+                            fixedImages.map((image: CrimeImage, i) =>
+                                <Carousel.Item
+                                    key={i}
+                                    src={image.original}
+                                    alt="picture of artwork"
+                                />
+                            )
+                        }
+                    </Carousel>
+                    <figcaption className="text-sm italic text-center">{fixedImages[0].caption}</figcaption>
+                </figure>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
-                    <p>{description}</p>
-                    <p>{additionalData}</p>
+                    <>
+                        {
+                            cardParagraphs.map((paragraph, i) => {
+                                if (paragraph === undefined) return;
+                                return <p key={i} dangerouslySetInnerHTML={{__html: paragraph}}/>;
+                                }
+                            )
+                        }
+                    </>
                     <Link href={`https://artcrimes.fbi.gov/${path}`} target="_blank">NSAF Link</Link>
                     <Link href='https://tips.fbi.gov/' target="_blank">Submit a tip</Link>
                     <Button

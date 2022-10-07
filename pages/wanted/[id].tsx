@@ -3,6 +3,7 @@ import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {Artcrime, WantedPerson} from "../../types";
 import getWantedPerson from "../../lib/getWantedPerson";
 import getWanted from "../../lib/getWanted";
+import CrimePage from "../../components/CrimePage";
 
 type WantedPersonProps = {
     wantedPerson: WantedPerson;
@@ -13,14 +14,18 @@ type WantedPersonDetailsParams = {
 }
 
 const WantedPersonDetails= (props : WantedPersonProps) => {
-    const { wantedPerson: { title, url, description, details, images } } = props;
-    const detailsHTML = { __html: details };
+    const { wantedPerson } = props;
+    const { title, url, description, details, images } = wantedPerson;
+
+    //const detailsHTML = { __html: details };
+
     return (
         <Layout title={title}>
             <div>
-                <h1>{title}</h1>
-                <p>{description}</p>
-                <p dangerouslySetInnerHTML={detailsHTML} />
+                <CrimePage
+                    crimeType='wanted'
+                    {...wantedPerson}
+                />
             </div>
         </Layout>
     );
