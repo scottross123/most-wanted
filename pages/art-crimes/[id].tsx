@@ -19,15 +19,14 @@ interface ArtCrimeDetailsParams extends ParsedUrlQuery {
 
 const ArtCrimeDetails = (props: ArtCrimeDetailsProps) => {
     const { artcrime } = props;
-    const { title, description } = artcrime;
-     const fixedImages =  getArtImages(artcrime.images);
-    const router = useRouter();
-    // image url from lib call is broken and fixed here, should be 'artcrimes' not 'lib'
+    const { title } = artcrime;
 
     return (
         <Layout title={title}>
-            <CrimePage fixedImages={fixedImages} {...artcrime} />
-            {/*<Button onClick={() => router.back()}>go back nerd</Button>*/}
+            <CrimePage
+                crimeType='artcrime'
+                {...artcrime}
+            />
         </Layout>
     );
 }
