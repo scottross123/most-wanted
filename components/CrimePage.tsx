@@ -111,7 +111,7 @@ const CrimePage = (props: CrimePageProps) => {
                 <figure className="flex flex-col gap-4">
                     <Carousel
                         className="rounded-box"
-                        display="numbered"
+                        display={"numbered"}
                         buttonStyle={carouselButtonStyle}
                     >
                         {
@@ -150,16 +150,16 @@ const CrimePage = (props: CrimePageProps) => {
                 </Card.Body>
             </Card>
 
-            <Card className="flex-1 flex flex-col justify-center p-8">
-                <Table className="w-full">
+            <div className="border rounded-lg h-fit w-1/2">
+                <Table className="w-full" compact>
                     <Table.Body>
                         {
                             Object.entries(propertiesToCell).map((row: [string, string | undefined]) => {
                                 if (row[1] === null || row[1] === undefined) return;
                                 return (
                                     <Table.Row key={row[0]}>
-                                        <span>{row[0]}</span>
-                                        <span>{row[1]}</span>
+                                        <span className="p-4 text-xs">{row[0]}</span>
+                                        <span className="p-4 text-xs">{row[1]}</span>
                                     </Table.Row>
                                     )
                                 }
@@ -167,7 +167,7 @@ const CrimePage = (props: CrimePageProps) => {
                         }
                     </Table.Body>
                 </Table>
-            </Card>
+            </div>
         </div>
     );
 }
