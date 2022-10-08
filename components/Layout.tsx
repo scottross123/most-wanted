@@ -13,10 +13,12 @@ const Layout = ({ title, children }: LayoutProps) => {
     return (
         <>
             <Meta title={title} />
-            <TopNavbar />
-            <main className="min-h-screen p-16 flex flex-col justify-items-center items-center">
-                {children}
-            </main>
+            <div className="min-h-screen">
+                <TopNavbar />
+                <main className="p-16 flex flex-col justify-items-center items-center">
+                    {children}
+                </main>
+            </div>
             <Footer />
         </>
     )
