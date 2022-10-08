@@ -11,7 +11,6 @@ const ImageCarousel = (props: ImageCarouselProps) => {
     const { images } = props;
     const [currentImage, setCurrentImage] = useState<number>(0);
 
-    // TODO maybe stop from resizing but ive given up for now
     return (
         <div className="flex flex-col items-center grow-0">
             <div className="">
@@ -28,16 +27,19 @@ const ImageCarousel = (props: ImageCarouselProps) => {
 
             <div className="flex justify-center items-center">
                 {
-                    images.map((image: CrimeImage, i) =>
-                        <Button
-                            key={i}
-                            size="xs"
-                            color="ghost"
-                            onClick={() => setCurrentImage(i)}
-                        >
-                            {i + 1}
-                        </Button>
-                    )
+                    images.map((image: CrimeImage, i) => {
+                        if (images.length === 1) return;
+                        return (
+                            <Button
+                                key={i}
+                                size="xs"
+                                color="ghost"
+                                onClick={() => setCurrentImage(i)}
+                            >
+                                {i + 1}
+                            </Button>
+                        );
+                    })
                 }
             </div>
         </div>

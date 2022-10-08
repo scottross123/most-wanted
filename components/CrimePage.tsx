@@ -5,6 +5,7 @@ import getArtImages from "../utils/getArtImages";
 import {useRouter} from "next/router";
 import {ReactElement} from "react";
 import ImageCarousel from "./ImageCarousel";
+import getRange from "../utils/getRange";
 
 // TODO maybe write a more explicit type definition for this
 interface CrimePageProps extends Partial<Artcrime>, Partial<WantedPerson> {
@@ -71,9 +72,9 @@ const CrimePage = (props: CrimePageProps) => {
         "Status": status,
         "Classification": person_classification,
         "NCIC": ncic,
-        "Age": `${age_min} - ${age_max}`,
-        "Weight": `${weight_min} lb - ${weight_max} lb`,
-        "Height": `${height_min} in - ${height_max} in`, // TODO add getRange function
+        "Age": getRange(age_min, age_max, 'age'),
+        "Weight": getRange(weight_min, weight_max, 'weight'),
+        "Height": getRange(height_min, height_max, 'height'),
         "Eyes": eyes_raw,
         "Hair": hair_raw,
         "Build": build,
@@ -93,7 +94,7 @@ const CrimePage = (props: CrimePageProps) => {
     };
 
     const cardParagraphs = [
-        `<p class="text-warning font-extrabold">${warning_message}</p>`,
+        (warning_message === null || warning_message === undefined ? undefined : `<p class="text-warning font-extrabold">${warning_message}</p>`),
         description,
         additionalData,
         additional_information,
