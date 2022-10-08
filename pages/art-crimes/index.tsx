@@ -9,7 +9,7 @@ type ArtCrimesProps = {
 
 const ArtCrimes = (props: ArtCrimesProps) => {
     const { artcrimes: { page, total, items } } = props;
-    const title = "Art Crimes 🖼️";
+    const title = "Art Crimes";
 
     return (
         <Layout title={title}>

@@ -15,9 +15,7 @@ type WantedPersonDetailsParams = {
 
 const WantedPersonDetails= (props : WantedPersonProps) => {
     const { wantedPerson } = props;
-    const { title, url, description, details, images } = wantedPerson;
-
-    //const detailsHTML = { __html: details };
+    const { title } = wantedPerson;
 
     return (
         <Layout title={title}>

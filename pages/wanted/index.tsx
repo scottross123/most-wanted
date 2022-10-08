@@ -12,7 +12,7 @@ type MostWantedProps = {
 
 const MostWanted = (props: MostWantedProps) => {
     const { wanted: { page, total, items } } = props;
-    const title = "Wanted 🦹";
+    const title = "Wanted";
 
     return (
         <Layout title={title}>

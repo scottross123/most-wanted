@@ -4,6 +4,7 @@ import { Link } from "react-daisyui";
 import getArtImages from "../utils/getArtImages";
 import {useRouter} from "next/router";
 import {ReactElement} from "react";
+import ImageCarousel from "./ImageCarousel";
 
 // TODO maybe write a more explicit type definition for this
 interface CrimePageProps extends Partial<Artcrime>, Partial<WantedPerson> {
@@ -107,38 +108,21 @@ const CrimePage = (props: CrimePageProps) => {
 
     return (
         <div className="flex w-full gap-16 justify-center">
-            <Card className="flex-1 p-8">
-                <figure className="flex flex-col gap-4">
-                    <Carousel
-                        className="rounded-box"
-                        display={"numbered"}
-                        buttonStyle={carouselButtonStyle}
-                    >
-                        {
-                            fixedImages.map((image: CrimeImage, i) =>
-                                <Carousel.Item
-                                    key={i}
-                                    src={image.original}
-                                    alt="picture of artwork"
-                                />
-                            )
-                        }
-                    </Carousel>
-                    <figcaption className="text-sm italic text-center">{fixedImages[0].caption}</figcaption>
-                </figure>
-                <Card.Body>
+            <Card className="flex-1 p-4">
+                <ImageCarousel images={fixedImages} />
+                <Card.Body className="grow">
                     <Card.Title>{title}</Card.Title>
                     <>
                         {
                             cardParagraphs.map((paragraph, i) => {
                                 if (paragraph === undefined) return;
-                                return <p key={i} dangerouslySetInnerHTML={{__html: paragraph}}/>;
+                                return <p key={i} className="text-xs" dangerouslySetInnerHTML={{__html: paragraph}}/>;
                                 }
                             )
                         }
                     </>
-                    <Link href={`https://artcrimes.fbi.gov/${path}`} target="_blank">NSAF Link</Link>
-                    <Link href='https://tips.fbi.gov/' target="_blank">Submit a tip</Link>
+                    <Link className="text-xs" href={`https://artcrimes.fbi.gov/${path}`} target="_blank">NSAF Link</Link>
+                    <Link className="text-xs" href='https://tips.fbi.gov/' target="_blank">Submit a tip</Link>
                     <Button
                         className='mt-4 w-1/3 normal-case'
                         variant="outline"
@@ -150,7 +134,7 @@ const CrimePage = (props: CrimePageProps) => {
                 </Card.Body>
             </Card>
 
-            <div className="border rounded-lg h-fit w-1/2">
+            <div className="border rounded-lg h-fit flex-1">
                 <Table className="w-full" compact>
                     <Table.Body>
                         {
