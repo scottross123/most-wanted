@@ -19,12 +19,10 @@ const WantedPersonDetails= (props : WantedPersonProps) => {
 
     return (
         <Layout title={title}>
-            <div>
-                <CrimePage
-                    crimeType='wanted'
-                    {...wantedPerson}
-                />
-            </div>
+            <CrimePage
+                crimeType='wanted'
+                {...wantedPerson}
+            />
         </Layout>
     );
 }

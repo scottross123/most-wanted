@@ -109,9 +109,9 @@ const CrimePage = (props: CrimePageProps) => {
 
     return (
         <div className="flex w-full gap-16 justify-center">
-            <Card className="flex-1 p-4">
+            <Card className="flex-1 p-4 w-1/2">
                 <ImageCarousel images={fixedImages} />
-                <Card.Body className="grow">
+                <Card.Body className="">
                     <Card.Title>{title}</Card.Title>
                     <>
                         {
@@ -135,16 +135,16 @@ const CrimePage = (props: CrimePageProps) => {
                 </Card.Body>
             </Card>
 
-            <div className="border rounded-lg h-fit flex-1">
-                <Table className="w-full" compact>
+            <div className="border rounded-lg h-fit flex-1 w-1/2 overflow-x-auto">
+                <Table className="w-full max-w-4xl overflow-hidden" compact>
                     <Table.Body>
                         {
                             Object.entries(propertiesToCell).map((row: [string, string | undefined]) => {
                                 if (row[1] === null || row[1] === undefined) return;
                                 return (
-                                    <Table.Row key={row[0]}>
-                                        <span className="p-4 text-xs">{row[0]}</span>
-                                        <span className="p-4 text-xs">{row[1]}</span>
+                                    <Table.Row className="break-words" key={row[0]}>
+                                        <span className="break-all p-4 text-xs">{row[0]}</span>
+                                        <span className="break-all p-4 text-xs">{row[1]}</span>
                                     </Table.Row>
                                     )
                                 }
