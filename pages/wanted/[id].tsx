@@ -4,6 +4,7 @@ import {Artcrime, WantedPerson} from "../../types";
 import getWantedPerson from "../../lib/getWantedPerson";
 import getWanted from "../../lib/getWanted";
 import CrimePage from "../../components/CrimePage";
+import {useRouter} from "next/router";
 
 type WantedPersonProps = {
     wantedPerson: WantedPerson;
@@ -15,10 +16,16 @@ type WantedPersonDetailsParams = {
 
 const WantedPersonDetails= (props : WantedPersonProps) => {
     const { wantedPerson } = props;
-    const { title } = wantedPerson;
+    //if (wantedPerson.title === undefined) wantedPerson.title = "not found";
+    const router = useRouter()
 
+    // If the page is not yet generated, this will be displayed
+    // initially until getStaticProps() finishes running
+    if (router.isFallback) {
+        return <div>Loading... </div>
+    }
     return (
-        <Layout title={title}>
+        <Layout title={wantedPerson.title}>
             <CrimePage
                 crimeType='wanted'
                 {...wantedPerson}
@@ -40,7 +47,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         const { uid } = item;
         return { params: { id: uid } }
     });
-    return { paths, fallback: true };
+    return { paths, fallback: 'blocking' };
 }
 
 export default WantedPersonDetails;

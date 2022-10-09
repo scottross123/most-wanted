@@ -1,6 +1,7 @@
 import fbi from "../assets/images/fbi.webp";
 import Link from "next/link";
 import { Card } from "react-daisyui";
+import {useRouter} from "next/router";
 
 type CrimeCardProps = {
     uid: string,
@@ -12,31 +13,29 @@ type CrimeCardProps = {
 
 const CrimeCard = (props: CrimeCardProps) => {
     const { uid, title, thumb, url, page } = props;
-    // TODO add shadows to card
+    const router = useRouter();
+
     return (
-        <Link href={`/${url}/${uid}`}
+        <Card
+            className="bg-secondary cursor-pointer border-secondary-content border-b-4 border-r-4 p-4 transition transform hover:boxy-shadow text-secondary-content"
+            compact
+            onClick={() => router.push(`/${url}/${uid}`)}
         >
-            <Card
-                className="bg-secondary cursor-pointer border-secondary-content border-b-4 p-4 transition transform hover:boxy-shadow text-secondary-content"
-                compact
-            >
-                <Card.Image
-                    className="m-auto h-32 w-28"
-                    onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src=`${fbi.src}`;
-                    }}
-                    src={thumb}
-                    alt="crime image"
-                />
-                <Card.Body className="text-center">
+            <Card.Image
+                className="m-auto h-32 w-28"
+                onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src=`${fbi.src}`;
+                }}
+                src={thumb}
+                alt="crime image"
+            />
+            <Card.Body className="text-center">
                 <Card.Title className="line-clamp-2 text-sm" tag={"h4"}>
                     {title}
                 </Card.Title>
-                    {/*<p className="">{description}</p> */}
-                </Card.Body>
-            </Card>
-        </Link>
+            </Card.Body>
+        </Card>
     );
 }
 

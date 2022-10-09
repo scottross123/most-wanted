@@ -19,10 +19,15 @@ interface ArtCrimeDetailsParams extends ParsedUrlQuery {
 
 const ArtCrimeDetails = (props: ArtCrimeDetailsProps) => {
     const { artcrime } = props;
-    const { title } = artcrime;
+    //if (artcrime.title === undefined) artcrime.title = "not found";
+    const router = useRouter()
+
+    if (router.isFallback) {
+        return <div>Loading...</div>
+    }
 
     return (
-        <Layout title={title}>
+        <Layout title={artcrime.title}>
             <CrimePage
                 crimeType='artcrime'
                 {...artcrime}

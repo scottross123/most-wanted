@@ -19,7 +19,7 @@ export type WantedPerson = {
     reward_text: string,
     reward_min: number,
     reward_max: number,
-    dates_of_birth_used: string[]
+    dates_of_birth_used: string[],
     place_of_birth: string,
     locations: string[]
     field_offices: string[]
@@ -52,7 +52,8 @@ export type WantedPerson = {
     publication: string,
     path: string,
     url: string,
-    languages: string
+    languages: string,
+    subjects: string[],
 }
 
 export type Wanted = {

@@ -18,7 +18,7 @@ type HomeProps = {
 const Home = (props: HomeProps) => {
     const { mostRecentArtcrime, mostRecentWanted } = props;
     const landingDiv = "flex-1 h-64"
-    const cardTitle = "text-center mb-4"
+    const cardTitle = "text-center mb-4 text-base-content"
 
     return (
       <Layout title="FBI's Most Wanted" isLanding>

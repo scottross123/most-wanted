@@ -54,11 +54,19 @@ const CrimePage = (props: CrimePageProps) => {
         occupations,
         possible_countries,
         possible_states,
-        status
+        status,
+        subjects,
+        dates_of_birth_used,
     } = props;
 
     const fixedImages = crimeType === 'artcrime' ? getArtImages(images) : images;
     const router = useRouter();
+
+    const convertDate = (dateString: string | undefined) => {
+        if (dateString === undefined) return;
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'long' }).format(date);
+    }
 
     const propertiesToCell = {
         "Category": crimeCategory,
@@ -86,9 +94,12 @@ const CrimePage = (props: CrimePageProps) => {
         "Occupations": occupations,
         "Possible Countries": possible_countries?.join(", "),
         "Possible States": possible_states?.join(", "),
+        "Subjects": subjects?.join(", "),
+        "Dates of Birth Used": dates_of_birth_used?.join(", "),
+        // "Files": maybe list link to files later
 
-        "Last Modified": modified, // TODO transform into readable date, maybe using that javascript library?
-        "Publication": publication,
+        "Last Modified": convertDate(modified), // TODO transform into readable date, maybe using that javascript library?
+        "Publication": convertDate(publication),
 
 
     };
@@ -102,6 +113,8 @@ const CrimePage = (props: CrimePageProps) => {
         caution,
         remarks
     ]
+
+    const link = crimeType === 'artcrime' ? `https://artcrimes.fbi.gov/${path}` : `https://www.fbi.gov/${path}`
 
     return (
         <div className="flex w-full gap-16 justify-center">
@@ -118,7 +131,7 @@ const CrimePage = (props: CrimePageProps) => {
                             )
                         }
                     </>
-                    <Link className="text-xs" href={`https://artcrimes.fbi.gov/${path}`} target="_blank">NSAF Link</Link>
+                    <Link className="text-xs" href={link} target="_blank">Original Link</Link>
                     <Link className="text-xs" href='https://tips.fbi.gov/' target="_blank">Submit a tip</Link>
                     <Button
                         className='mt-4 w-1/3'
