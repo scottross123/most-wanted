@@ -1,6 +1,4 @@
-import Meta from "./Meta";
-import TopNavbar from "./TopNavbar";
-import Footer from "./Footer";
+import { Meta, TopNavbar, AppFooter} from './index'
 
 type LayoutProps = {
     title: string,
@@ -21,7 +19,7 @@ const Layout = (props: LayoutProps) => {
                     {children}
                 </main>
             </div>
-            <Footer />
+            <AppFooter />
         </>
     )
 }

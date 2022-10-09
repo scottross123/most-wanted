@@ -20,7 +20,6 @@ const TopNavbar = () => {
             <Navbar.End>
                     <Button className={linkStyle} href="/art-crimes" color="ghost">Art Crimes</Button>
                     <Button className={linkStyle} href="/wanted" color="ghost">Wanted Persons</Button>
-                {/*<li><a href="https://github.com/scottross123/most-wanted">GitHub Repo</a></li>*/}
                     <Dropdown horizontal="center" vertical="end">
 
                         <Button color="ghost" shape="circle" tabIndex={0}>
