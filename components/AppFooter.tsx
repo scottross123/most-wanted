@@ -18,6 +18,12 @@ const AppFooter = () => {
                 <a href="https://github.com/scottross123" target="_blank" rel="noreferrer">My GitHub</a>
             </div>
 
+            <div className={footerSectionStyle}>
+                <Footer.Title className="hover:cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})}>Back to top</Footer.Title>
+            </div>
+
+
+
             {/*
             <div className={footerSectionStyle}>
                 <Footer.Title>Theme</Footer.Title>
