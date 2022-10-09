@@ -5,17 +5,19 @@ import Footer from "./Footer";
 type LayoutProps = {
     title: string,
     children: JSX.Element,
+    isLanding?: boolean,
 }
 
-// TODO fix unnecassry scrollbar
+const Layout = (props: LayoutProps) => {
+    const { title, isLanding, children } = props;
+    const padding = isLanding ? "" : "p-16"; // TODO refactor
 
-const Layout = ({ title, children }: LayoutProps) => {
     return (
         <>
             <Meta title={title} />
-            <div className="min-h-screen">
+            <div className="min-h-screen flex flex-col">
                 <TopNavbar />
-                <main className="p-16 flex flex-col justify-items-center items-center">
+                <main className={`${padding} flex flex-col justify-items-center items-center`}>
                     {children}
                 </main>
             </div>
