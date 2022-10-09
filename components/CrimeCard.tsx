@@ -17,7 +17,7 @@ const CrimeCard = (props: CrimeCardProps) => {
         <Link href={`/${url}/${uid}`}
         >
             <Card
-                className="cursor-pointer border-b-base-200 border-b-4 p-4 transition transform hover:boxy-shadow "
+                className="bg-secondary cursor-pointer border-secondary-content border-b-4 p-4 transition transform hover:boxy-shadow text-secondary-content"
                 compact
             >
                 <Card.Image

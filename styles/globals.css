@@ -37,3 +37,10 @@ body {
     background: var(--clr-background);
   }
 }*/
+
+
+td, th {
+  background-color: var(--sc) !important;
+  border-color: var(--sc) !important;
+}
+

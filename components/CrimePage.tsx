@@ -103,13 +103,9 @@ const CrimePage = (props: CrimePageProps) => {
         remarks
     ]
 
-    const carouselButtonStyle = (value: string) => {
-        return <Button size="xs" color="ghost">{value}</Button>
-    }
-
     return (
         <div className="flex w-full gap-16 justify-center">
-            <Card className="flex-1 p-4 w-1/2">
+            <Card className="flex-1 p-4 w-1/2 border border-secondary-content bg-secondary text-secondary-content">
                 <ImageCarousel images={fixedImages} />
                 <Card.Body className="">
                     <Card.Title>{title}</Card.Title>
@@ -125,25 +121,25 @@ const CrimePage = (props: CrimePageProps) => {
                     <Link className="text-xs" href={`https://artcrimes.fbi.gov/${path}`} target="_blank">NSAF Link</Link>
                     <Link className="text-xs" href='https://tips.fbi.gov/' target="_blank">Submit a tip</Link>
                     <Button
-                        className='mt-4 w-1/3 normal-case'
+                        className='mt-4 w-1/3'
                         variant="outline"
                         size='xs'
                         onClick={() => router.back()}
                     >
-                        Go back to results
+                        Go back
                     </Button>
                 </Card.Body>
             </Card>
 
-            <div className="border rounded-lg h-fit flex-1 w-1/2 overflow-x-auto">
-                <Table className="w-full max-w-4xl overflow-hidden" compact>
-                    <Table.Body>
+            <div className="border rounded-lg h-fit flex-1 w-1/2 overflow-x-auto border-secondary-content ">
+                <Table className="w-full max-w-4xl overflow-hidden bg-secondary text-secondary-content" compact>
+                    <Table.Body className="bg-secondary">
                         {
                             Object.entries(propertiesToCell).map((row: [string, string | undefined]) => {
                                 if (row[1] === null || row[1] === undefined) return;
                                 return (
-                                    <Table.Row className="break-words" key={row[0]}>
-                                        <span className="break-all p-4 text-xs">{row[0]}</span>
+                                    <Table.Row className="break-words " key={row[0]}>
+                                        <span className="break-all p-4 text-xs ">{row[0]}</span>
                                         <span className="break-all p-4 text-xs">{row[1]}</span>
                                     </Table.Row>
                                     )
